@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://raushan606:Raushan@123@devcamper.mzhzx.mongodb.net/starwisp?retryWrites=true&w=majority",
+  "jwtSecret": "mysecrettokenstarwisp"
+}
