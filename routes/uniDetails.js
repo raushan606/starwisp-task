@@ -77,13 +77,14 @@ router.post(
   }
 );
 
-//* @route  PUT api/unidetails
+//* @route  PUT api/unidetails/:id
 //* @desc   Update UniDetail
 //* @access Private
 router.put("/:id", [auth], async (req, res) => {
   try {
     let unidetail = await UniDetail.findById(req.params.id);
 
+    //* Check if unidetail is exists or not
     if (!unidetail) {
       return res.status(404).json({
         errors: [
@@ -99,7 +100,31 @@ router.put("/:id", [auth], async (req, res) => {
     });
 
     res.status(200).json(unidetail);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
 
+//* @route  DELETE api/unidetails/:id
+//* @desc   Delete UniDetail
+//* @access Private
+router.delete("/:id", auth, async (req, res) => {
+  try {
+    const unidetail = await UniDetail.findById(req.params.id);
+
+    //* Check if unidetail is exists or not
+    if (!unidetail) {
+      return res.status(404).json({
+        errors: [
+          {
+            msg: "University Not Found",
+          },
+        ],
+      });
+    }
+
+    unidetail.remove();
     res.json(unidetail);
   } catch (err) {
     console.error(err.message);
