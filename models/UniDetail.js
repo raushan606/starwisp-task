@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
-const autoincrement = require("mongoose-auto-increment");
 
 const UniDetailSchema = new mongoose.Schema({
   uniname: {
     type: String,
     trim: true,
     required: true,
+    unique: true,
   },
   registrationDate: {
     type: Date,
@@ -18,6 +18,7 @@ const UniDetailSchema = new mongoose.Schema({
   imgUrl: {
     type: String,
     trim: true,
+    required: true,
   },
   noOfStudent: {
     type: Number,
@@ -31,9 +32,12 @@ const UniDetailSchema = new mongoose.Schema({
   webUrl: {
     type: String,
     trim: true,
+    required: true,
   },
   contactNo: {
     type: Number,
     required: true,
   },
 });
+
+module.exports = UniDetail = mongoose.model("unidetail", UniDetailSchema);
