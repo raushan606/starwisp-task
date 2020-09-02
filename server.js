@@ -1,16 +1,18 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const connectDB = require("./config/db");
 
 const app = express();
+
+//* Connect Database
+connectDB();
 
 //* PORT
 const PORT = process.env.PORT || 5000;
 
-const corsOption = {
-  origin: "http://localhost:5001",
-};
-app.use(cors(corsOption));
+//* cors
+app.use(cors());
 
 //* BodyParser
 app.use(bodyParser.json());
