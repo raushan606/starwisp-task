@@ -18,9 +18,9 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/", (req, res) => {
-  res.json({ msg: "Welcome " });
-});
+//* Define Routes
+app.use("/api/users", require("./routes/users"));
+app.use("/api/auth", require("./routes/auth"));
 
 app.listen(PORT, () => {
   console.log(`Server is up on port number ${PORT}`);
