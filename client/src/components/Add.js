@@ -110,12 +110,13 @@ const Add = () => {
               onChange={(e) => onChange(e)}
               placeholder="Number of Students"
               required="true"
+              pattern="\d+"
             />
           </FormGroup>
           <FormGroup>
             <Label for="email">Email</Label>
             <Input
-              type="text"
+              type="email"
               name="email"
               id="email"
               value={email}
@@ -148,6 +149,7 @@ const Add = () => {
               maxLength="10"
               minLength="10"
               required="true"
+              pattern="\d+"
             />
           </FormGroup>
 

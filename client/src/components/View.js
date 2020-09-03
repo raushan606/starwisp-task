@@ -87,18 +87,7 @@ const View = () => {
                   </Link>
                 </td>
               </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-              </tr>
+           
             </tbody>
           </table>
           <Pagination aria-label="Page navigation example">
@@ -111,15 +100,6 @@ const View = () => {
             </PaginationItem>
             <PaginationItem>
               <PaginationLink href="#">2</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">3</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">4</PaginationLink>
-            </PaginationItem>
-            <PaginationItem>
-              <PaginationLink href="#">5</PaginationLink>
             </PaginationItem>
 
             <PaginationItem>
