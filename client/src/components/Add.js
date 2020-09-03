@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import Navbar from "./Navigation";
-import DatePicker from "react-datepicker";
 
 const Add = () => {
   const [formData, setFormData] = useState({
@@ -50,7 +49,7 @@ const Add = () => {
           className="p-3 mb-3 mt-5 bg-light"
           style={{ border: "1px solid blue", color: "blue" }}
         >
-          <h2>University Detail</h2>
+          <h2>Add University Detail</h2>
         </div>
         <Form className="w-50 bg-light pb-3 mb-3" onSubmit={(e) => onSubmit(e)}>
           <FormGroup>
@@ -62,6 +61,7 @@ const Add = () => {
               onChange={(e) => onChange(e)}
               id="uniname"
               placeholder="University Name"
+              required="true"
             />
           </FormGroup>
           <FormGroup>
@@ -73,22 +73,86 @@ const Add = () => {
               value={registrationDate}
               onChange={(e) => onChange(e)}
               placeholder="Registration Date"
+              required="true"
             />
           </FormGroup>
           <FormGroup>
             <Label for="expiryDate">Expiry Date</Label>
             <Input
               type="date"
-              name="registrationDate"
-              id="registrationDate"
-              value={registrationDate}
+              name="expiryDate"
+              id="expiryDate"
+              value={expiryDate}
               onChange={(e) => onChange(e)}
-              placeholder="Registration Date"
+              placeholder="Expiry Date"
+              required="true"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="imgUrl">Image Url</Label>
+            <Input
+              type="text"
+              name="imgUrl"
+              id="imgUrl"
+              value={imgUrl}
+              onChange={(e) => onChange(e)}
+              placeholder="Image Url"
+              required="true"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="noOfStudent">Number of Students</Label>
+            <Input
+              type="text"
+              name="noOfStudent"
+              id="noOfStudent"
+              value={noOfStudent}
+              onChange={(e) => onChange(e)}
+              placeholder="Number of Students"
+              required="true"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="email">Email</Label>
+            <Input
+              type="text"
+              name="email"
+              id="email"
+              value={email}
+              onChange={(e) => onChange(e)}
+              placeholder="Email"
+              required="true"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="webUrl">Website Url</Label>
+            <Input
+              type="text"
+              name="webUrl"
+              id="webUrl"
+              value={webUrl}
+              onChange={(e) => onChange(e)}
+              placeholder="Website Url"
+              required="true"
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="contactNo">Contact No.</Label>
+            <Input
+              type="text"
+              name="contactNo"
+              id="contactNo"
+              value={contactNo}
+              onChange={(e) => onChange(e)}
+              placeholder="Contact No."
+              maxLength="10"
+              minLength="10"
+              required="true"
             />
           </FormGroup>
 
-          <Button color="primary" type="submit" value="Login">
-            Login
+          <Button color="primary" type="submit" value="submit">
+            Submit
           </Button>
         </Form>
       </div>
