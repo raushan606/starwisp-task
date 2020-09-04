@@ -5,7 +5,6 @@ const UniDetailSchema = new mongoose.Schema({
     type: String,
     trim: true,
     required: true,
-    unique: true,
   },
   registrationDate: {
     type: Date,

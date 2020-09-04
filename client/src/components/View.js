@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import Navbar from "./Navigation";
-import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
+import { Pagination, PaginationItem, PaginationLink, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { getUniDetails, deleteUniDetails } from "../services/unidetail-service";
-
 
 class View extends Component {
   constructor(props) {
@@ -77,7 +76,6 @@ class View extends Component {
             <Link
               type="button"
               onClick={(e) => {
-                window.location.reload();
                 return deleteUniDetails(_id);
               }}
             >

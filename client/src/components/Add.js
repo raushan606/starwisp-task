@@ -31,8 +31,13 @@ const Add = () => {
   };
 
   const onSubmit = async (e) => {
+    e.preventDefault();
     console.log(formData);
-    postUniDetails(formData);
+    await postUniDetails(formData).then((res) => {
+      if (res.status === 200) {
+        window.location.href = "/view";
+      }
+    });
   };
   return (
     <div>

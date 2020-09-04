@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import Navbar from "./Navigation";
-import { putUniDetails } from "../services/unidetail-service";
+import moment from "moment";
+import { putUniDetails, getUniDetailbyId } from "../services/unidetail-service";
+import { Link } from "react-router-dom";
 
 class Edit extends Component {
   constructor(props) {
@@ -19,18 +21,30 @@ class Edit extends Component {
     };
   }
 
-  //    DishWithId = ({match}) => {
-  //       return(
-  //           <DishDetail dish={this.props.dishes.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]}
-  //             isLoading={this.props.dishes.dishes.isLoading}
-  //             errMess={this.props.dishes.errMess}
-  //             comments={this.props.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))}
-  //             addComment={this.props.addComment}/>
-  //       );
-  //     };
   componentDidMount() {
-    // const { name } = this.props.location.state;
-    //console.log("Detail: " + name);
+    getUniDetailbyId(this.props.match.params.id).then((res) => {
+      const {
+        uniname,
+        registrationDate,
+        expiryDate,
+        imgUrl,
+        noOfStudent,
+        webUrl,
+        email,
+        contactNo,
+      } = res.data;
+      this.setState({
+        uniname: uniname,
+        registrationDate: moment(registrationDate).format("YYYY-MM-DD"),
+        expiryDate: moment(expiryDate).format("YYYY-MM-DD"),
+        imgUrl: imgUrl,
+        noOfStudent: noOfStudent,
+        webUrl: webUrl,
+        email: email,
+        contactNo: contactNo,
+      });
+      console.log(this.state);
+    });
     console.log(this.props.match.params.id);
   }
 
@@ -41,8 +55,12 @@ class Edit extends Component {
     });
   };
 
-  onSubmit = (e) => {
-    //  console.log("Detail: " + this.props.location.aboutProps);
+  onSubmit = async (e) => {
+    e.preventDefault();
+    await putUniDetails(this.props.match.params.id, this.state).then((res) => {
+      console.log(res.data);
+      window.location.href = "/view";
+    });
   };
 
   render() {

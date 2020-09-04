@@ -66,19 +66,7 @@ class Login extends Component {
 
         window.location.reload();
       });
-    // await AuthService.login(this.state.userId, this.state.password).then(
-    //   () => {
-    //     this.props.history.push("/view");
-    //     window.location.reload();
-    //   },
-    //   (error) => {
-    //     window.alert(JSON.stringify(error));
-
-    // this.setState({
-    //   message: resMessage,
-    // });
-    //   }
-    // );
+  
   }
 
   render() {

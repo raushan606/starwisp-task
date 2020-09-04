@@ -19,6 +19,27 @@ router.get("/", auth, async (req, res) => {
   }
 });
 
+//* @route  GET api/unidetails/:id
+//* @desc   Get single UniDetatils
+//* @access Private
+router.get("/:id", auth, async (req, res) => {
+  try {
+    let unidetail = await UniDetail.findById(req.params.id);
+
+    //* Check if unidetail is exists or not
+    if (!unidetail) {
+      return res.status(404).json({
+        msg: "University Not Found",
+      });
+    }
+
+    res.status(200).json(unidetail);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
+  }
+});
+
 //* @route  POST api/unidetails
 //* @desc   Create a UniDetail
 //* @access Private
@@ -53,7 +74,7 @@ router.post(
 
       if (uniDetail) {
         return res.status(400).json({
-          errors: [{ msg: "University already exists." }],
+          msg: "University already exists.",
         });
       }
 
@@ -87,11 +108,7 @@ router.put("/:id", [auth], async (req, res) => {
     //* Check if unidetail is exists or not
     if (!unidetail) {
       return res.status(404).json({
-        errors: [
-          {
-            msg: "University Not Found",
-          },
-        ],
+        msg: "University Not Found",
       });
     }
 
@@ -116,11 +133,7 @@ router.delete("/:id", auth, async (req, res) => {
     //* Check if unidetail is exists or not
     if (!unidetail) {
       return res.status(404).json({
-        errors: [
-          {
-            msg: "University Not Found",
-          },
-        ],
+        msg: "University Not Found",
       });
     }
 

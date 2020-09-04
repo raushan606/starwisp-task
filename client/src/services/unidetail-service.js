@@ -8,6 +8,10 @@ export const getUniDetails = async () => {
   return axios.get(API_URL, { headers: authHeader() });
 };
 
+export const getUniDetailbyId = async (id) => {
+  return axios.get(API_URL + `/${id}`, { headers: authHeader() });
+};
+
 export const postUniDetails = (data) => {
   return axios.post(API_URL, data, { headers: authHeader() });
 };
