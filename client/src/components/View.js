@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import { getUniDetails, deleteUniDetails } from "../services/unidetail-service";
 
+
 class View extends Component {
   constructor(props) {
     super(props);
@@ -54,7 +55,8 @@ class View extends Component {
           <td className="text-center">{webUrl}</td>
           <td className="text-center">{contactNo}</td>
           <td className="text-center">
-            <Link to="/add">
+            {/* <Link to="/edit" detail={detail}> */}
+            <Link type="button" to={`/edit/${_id}`}>
               <svg
                 width="1em"
                 height="1em"
@@ -75,6 +77,7 @@ class View extends Component {
             <Link
               type="button"
               onClick={(e) => {
+                window.location.reload();
                 return deleteUniDetails(_id);
               }}
             >
@@ -168,7 +171,6 @@ class View extends Component {
               <PaginationItem>
                 <PaginationLink first href="#" />
               </PaginationItem>
-
               <PaginationItem>
                 <PaginationLink href="#">1</PaginationLink>
               </PaginationItem>

@@ -26,6 +26,7 @@ const Navigation = () => {
             <NavItem>
               <NavLink href="/add">Add</NavLink>
             </NavItem>
+
             <NavItem>
               <NavLink href="/view">View</NavLink>
             </NavItem>

@@ -1,25 +1,30 @@
-import React from "react";
+import React, { Component } from "react";
 import Login from "./components/Login";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Add from "./components/Add";
 import View from "./components/View";
+import Edit from "./components/Edit";
+import { PrivateRoute } from "./PrivateRoute";
 
-
-function App() {
-  return (
-    <Router>
-      <>
-        <Route exact path="/" component={Login} />
-        <section>
+export default class App extends Component {
+  check = () => {
+    if (localStorage.token) {
+      return true;
+    }
+    return false;
+  };
+  render() {
+    return (
+      <Router>
+        <>
           <Switch>
-            <Route exact path="/add" component={Add} />
-            <Route exact path="/view" component={View} />
+            <Route exact path="/" component={Login} />
+            <PrivateRoute exact path="/add" component={Add} />
+            <PrivateRoute exact path="/view" component={View} />
+            <PrivateRoute exact path="/edit/:id" component={Edit} />
           </Switch>
-        </section>
-       
-      </>
-    </Router>
-  );
+        </>
+      </Router>
+    );
+  }
 }
-
-export default App;
