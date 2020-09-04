@@ -51,7 +51,6 @@ class Login extends Component {
           localStorage.setItem("userId", JSON.stringify(res.data.userId));
           window.location.href = "/view";
         }
-        window.alert(res.data.userId);
       })
       .catch((err) => {
         if (err.response.status === undefined) {
@@ -62,11 +61,10 @@ class Login extends Component {
         this.setState({
           message: err.response.data.msg,
         });
-        //  window.alert(err.response.data.msg);
+        window.alert(err.response.data.msg);
 
         window.location.reload();
       });
-  
   }
 
   render() {

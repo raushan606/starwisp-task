@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import Login from "./components/Login";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+ 
+} from "react-router-dom";
 import Add from "./components/Add";
 import View from "./components/View";
 import Edit from "./components/Edit";
@@ -17,8 +22,10 @@ export default class App extends Component {
     return (
       <Router>
         <>
-          <Switch>
+          {localStorage.token ? null : (
             <Route exact path="/" component={Login} />
+          )}
+          <Switch>
             <PrivateRoute exact path="/add" component={Add} />
             <PrivateRoute exact path="/view" component={View} />
             <PrivateRoute exact path="/edit/:id" component={Edit} />

@@ -101,7 +101,7 @@ router.post(
 //* @route  PUT api/unidetails/:id
 //* @desc   Update UniDetail
 //* @access Private
-router.put("/:id", [auth], async (req, res) => {
+router.put("/:id", auth, async (req, res) => {
   try {
     let unidetail = await UniDetail.findById(req.params.id);
 
@@ -112,9 +112,7 @@ router.put("/:id", [auth], async (req, res) => {
       });
     }
 
-    unidetail = await UniDetail.findOneAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
+    unidetail = await UniDetail.findByIdAndUpdate(req.params.id, req.body);
 
     res.status(200).json(unidetail);
   } catch (err) {
