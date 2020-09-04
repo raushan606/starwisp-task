@@ -4,6 +4,7 @@ import Login from "./components/Login";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Add from "./components/Add";
 import View from "./components/View";
+import AuthService from "./services/auth.service";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
             <Route exact path="/view" component={View} />
           </Switch>
         </section>
+        {console.log(AuthService.getCurrentUser())}
       </>
     </Router>
   );

@@ -35,8 +35,13 @@ class Login extends Component {
       message: "",
     });
 
+    window.alert(this.state.userId + " " + this.state.password);
+    window.alert("Login: " + localStorage.token + " " + localStorage.userId);
     await AuthService.login(this.state.userId, this.state.password).then(
       () => {
+        window.alert(
+          "Login: " + localStorage.token + " " + localStorage.userId
+        );
         this.props.history.push("/view");
         window.location.reload();
       },
@@ -51,7 +56,6 @@ class Login extends Component {
         this.setState({
           message: resMessage,
         });
-        window.alert(error);
       }
     );
   }
@@ -83,7 +87,7 @@ class Login extends Component {
               onChange={this.onChangeUserId}
               id="userId"
               placeholder="UserID"
-              required="true"
+              required={true}
             />
           </FormGroup>
           <FormGroup>
@@ -96,7 +100,7 @@ class Login extends Component {
               onChange={this.onChangePassword}
               placeholder="Password"
               minLength="6"
-              required="true"
+              required={true}
             />
           </FormGroup>
 

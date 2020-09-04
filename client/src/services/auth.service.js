@@ -4,22 +4,31 @@ const API_URL = "http://localhost:5000/api/";
 
 class AuthService {
   login(userId, password) {
-    return axios
-      .post(API_URL + "auth", {
-        userId,
-        password,
-      })
-      .then((response) => {
-        if (response.data.token) {
-          localStorage.setItem("user", JSON.stringify(response.data));
-        }
+    const data = { userId, password };
+    return axios.post(API_URL + "auth", data).then((response) => {
+      window.alert(response.data);
+      console.log("loginservice" + response);
+      if (response.data.token) {
+        localStorage.setItem("token", JSON.stringify(response.data.token));
+      }
+      if (response.data.userId) {
+        localStorage.setItem("userId", JSON.stringify(response.data.userId));
+      }
 
-        return response.data;
-      })
+      window.alert(userId);
+      console.log(response.data);
+      console.log(response.status);
+      console.log(response.statusText);
+      console.log(response.headers);
+      console.log(response.config);
+      return response.data;
+    });
   }
 
   logout() {
-    localStorage.removeItem("user");
+    console.log("logout :" + localStorage.userId);
+    localStorage.removeItem("token");
+    localStorage.removeItem("userId");
   }
 
   getCurrentUser() {
