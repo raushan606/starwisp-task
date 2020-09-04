@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Navbar from "./Navigation";
-import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
+import { Pagination, PaginationItem, PaginationLink, Button } from "reactstrap";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import { getUniDetails } from "../services/unidetail-service";
+import moment from "moment";
+import { getUniDetails, deleteUniDetails } from "../services/unidetail-service";
 const API_URL = "http://localhost:5000/api/unidetails";
 
 class View extends Component {
@@ -30,6 +30,7 @@ class View extends Component {
       this.setState({ details: result });
       console.log(this.state.details);
     });
+
     // .catch((err) => {
     //   if (err.response.status === undefined) {
     //     window.alert("Please connect to internet!");
@@ -60,15 +61,19 @@ class View extends Component {
       return (
         <tr key={_id}>
           <th scope="row">{index}</th>
-          <td>{uniname}</td>
-      <td>{moment(registrationDate).format("YYYY-MM-DD")}</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-          <td>Otto</td>
-          <td>
+          <td className="text-center">{uniname}</td>
+          <td className="text-center">
+            {moment(registrationDate).format("YYYY-MM-DD")}
+          </td>
+          <td className="text-center">
+            {moment(expiryDate).format("YYYY-MM-DD")}
+          </td>
+          <td className="text-center">{imgUrl}</td>
+          <td className="text-center">{noOfStudent}</td>
+          <td className="text-center">{email}</td>
+          <td className="text-center">{webUrl}</td>
+          <td className="text-center">{contactNo}</td>
+          <td className="text-center">
             <Link to="/add">
               <svg
                 width="1em"
@@ -86,8 +91,13 @@ class View extends Component {
               </svg>
             </Link>
           </td>
-          <td>
-            <Link to="/add">
+          <td className="text-center">
+            <Link
+              type="button"
+              onClick={(e) => {
+                return deleteUniDetails(_id);
+              }}
+            >
               <svg
                 width="1em"
                 height="1em"
@@ -116,12 +126,12 @@ class View extends Component {
       <div>
         <Navbar />
         <div
-          className="container mt-5 bg-light d-flex flex-column align-items-center"
+          className="container-fluid  bg-light d-flex flex-column align-items-center"
           style={{
             border: "0px solid blue",
             color: "blue",
             marginTop: "25px",
-            boxShadow: "10px 10px 10px 10px #B6B4C2",
+            // boxShadow: "10px 10px 10px 10px #B6B4C2",
           }}
         >
           <div
@@ -131,20 +141,45 @@ class View extends Component {
             <h2>View University Detail</h2>
           </div>
           <div className="table-responsive-lg">
-            <table className="table">
+            <table
+              className="table"
+              style={{ boxShadow: "10px 10px 10px 10px #B6B4C2" }}
+            >
               <thead className="thead-dark">
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">University Name</th>
-                  <th scope="col">Registration Date</th>
-                  <th scope="col">Expiry Date</th>
-                  <th scope="col">Image Url</th>
-                  <th scope="col">No. of Students</th>
-                  <th scope="col">Email</th>
-                  <th scope="col">Web Url</th>
-                  <th scope="col">Contact No.</th>
-                  <th scope="col">Edit</th>
-                  <th scope="col">Delete</th>
+                  <th className="text-center" scope="col">
+                    #
+                  </th>
+                  <th className="text-center" scope="col">
+                    University Name
+                  </th>
+                  <th className="text-center" scope="col">
+                    Registration Date
+                  </th>
+                  <th className="text-center" scope="col">
+                    Expiry Date
+                  </th>
+                  <th className="text-center" scope="col">
+                    Image Url
+                  </th>
+                  <th className="text-center" scope="col">
+                    No. of Students
+                  </th>
+                  <th className="text-center" scope="col">
+                    Email
+                  </th>
+                  <th className="text-center" scope="col">
+                    Web Url
+                  </th>
+                  <th className="text-center" scope="col">
+                    Contact No.
+                  </th>
+                  <th className="text-center" scope="col">
+                    Edit
+                  </th>
+                  <th className="text-center" scope="col">
+                    Delete
+                  </th>
                 </tr>
               </thead>
               <tbody>{this.renderUniData()}</tbody>
