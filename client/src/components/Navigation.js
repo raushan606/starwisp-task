@@ -24,19 +24,29 @@ const Navigation = () => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto " navbar>
             <NavItem>
-              <NavLink href="/add">Add</NavLink>
+              <NavLink style={{ color: "white" }} href="/add">
+                Add
+              </NavLink>
             </NavItem>
 
             <NavItem>
-              <NavLink href="/view">View</NavLink>
+              <NavLink style={{ color: "white" }} href="/view">
+                View
+              </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/" onClick={AuthService.logout}>
+              <NavLink
+                style={{ color: "white" }}
+                href="/"
+                onClick={AuthService.logout}
+              >
                 Logout
               </NavLink>
             </NavItem>
           </Nav>
-          <NavbarText>Hello {AuthService.getCurrentUser()}</NavbarText>
+          <NavbarText style={{ color: "white" }}>
+            Hello {AuthService.getCurrentUser()}
+          </NavbarText>
         </Collapse>
       </Navbar>
     </div>

@@ -4,7 +4,7 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
- 
+  Redirect,
 } from "react-router-dom";
 import Add from "./components/Add";
 import View from "./components/View";
@@ -22,9 +22,11 @@ export default class App extends Component {
     return (
       <Router>
         <>
-          {localStorage.token ? null : (
-            <Route exact path="/" component={Login} />
-          )}
+          <Route
+            exact
+            path="/"
+            render={() => (this.check() ? <Redirect to="/view" /> : <Login />)}
+          />
           <Switch>
             <PrivateRoute exact path="/add" component={Add} />
             <PrivateRoute exact path="/view" component={View} />

@@ -65,7 +65,7 @@ class View extends Component {
 
         return (
           <tr key={_id}>
-            <th scope="row">{index}</th>
+            <th scope="row">{start + index + 1}</th>
             <td className="text-center">{uniname}</td>
             <td className="text-center">
               {moment(registrationDate).format("YYYY-MM-DD")}
