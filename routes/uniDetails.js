@@ -12,7 +12,7 @@ const router = express.Router();
 router.get("/", auth, async (req, res) => {
   try {
     const unidetails = await UniDetail.find();
-    res.json(unidetails);
+    res.status(200).json(unidetails);
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server Error");

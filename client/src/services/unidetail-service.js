@@ -3,7 +3,8 @@ import authHeader from "./auth-header";
 
 const API_URL = "http://localhost:5000/api/unidetails";
 
-export const getUniDetails = () => {
+//const headers = { "x-auth-token": localStorage.token };
+export const getUniDetails = async () => {
   return axios.get(API_URL, { headers: authHeader() });
 };
 
