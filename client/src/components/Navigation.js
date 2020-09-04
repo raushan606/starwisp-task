@@ -15,7 +15,7 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => setIsOpen(!isOpen);
-  console.log("Navabr: " + localStorage.token);
+
   return (
     <div>
       <Navbar color="navbar navbar-dark bg-primary" light expand="md">
@@ -35,7 +35,7 @@ const Navigation = () => {
               </NavLink>
             </NavItem>
           </Nav>
-          <NavbarText>Hello {localStorage.userId}</NavbarText>
+          <NavbarText>Hello {AuthService.getCurrentUser()}</NavbarText>
         </Collapse>
       </Navbar>
     </div>

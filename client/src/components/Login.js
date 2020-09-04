@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import axios from "axios";
+
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import AuthService from "../services/auth.service";
+const API_URL = "http://localhost:5000/api/";
 
 class Login extends Component {
   constructor(props) {
@@ -35,29 +38,47 @@ class Login extends Component {
       message: "",
     });
 
-    window.alert(this.state.userId + " " + this.state.password);
-    window.alert("Login: " + localStorage.token + " " + localStorage.userId);
-    await AuthService.login(this.state.userId, this.state.password).then(
-      () => {
-        window.alert(
-          "Login: " + localStorage.token + " " + localStorage.userId
-        );
-        this.props.history.push("/view");
-        window.location.reload();
-      },
-      (error) => {
-        const resMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-
+    axios
+      .post(API_URL + "auth", {
+        userId: this.state.userId,
+        password: this.state.password,
+      })
+      .then((res) => {
+        if (res.status === 400) {
+          window.alert(res.data.msg);
+        } else if (res.status === 200) {
+          localStorage.setItem("token", JSON.stringify(res.data.token));
+          localStorage.setItem("userId", JSON.stringify(res.data.userId));
+          window.location.href = "/view";
+        }
+        window.alert(res.data.userId);
+      })
+      .catch((err) => {
+        if (err.response.status === undefined) {
+          window.alert("Please connect to internet!");
+        } else if (err.response.status === 300 || err.response.status === 500) {
+          window.alert(err.response.data.msg);
+        }
         this.setState({
-          message: resMessage,
+          message: err.response.data.msg,
         });
-      }
-    );
+        //  window.alert(err.response.data.msg);
+
+        window.location.reload();
+      });
+    // await AuthService.login(this.state.userId, this.state.password).then(
+    //   () => {
+    //     this.props.history.push("/view");
+    //     window.location.reload();
+    //   },
+    //   (error) => {
+    //     window.alert(JSON.stringify(error));
+
+    // this.setState({
+    //   message: resMessage,
+    // });
+    //   }
+    // );
   }
 
   render() {
@@ -71,6 +92,9 @@ class Login extends Component {
           boxShadow: "10px 10px 10px 10px #B6B4C2",
         }}
       >
+        <div className="alert-danger" role="alert">
+          {this.state.message}
+        </div>
         <div
           className="p-3 mb-3 mt-5 bg-light"
           style={{ border: "1px solid blue", color: "blue" }}
