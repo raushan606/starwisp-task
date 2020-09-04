@@ -1,24 +1,14 @@
 import React, { Component } from "react";
 import Navbar from "./Navigation";
-import { Pagination, PaginationItem, PaginationLink, Button } from "reactstrap";
+import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
 import { Link } from "react-router-dom";
 import moment from "moment";
 import { getUniDetails, deleteUniDetails } from "../services/unidetail-service";
-const API_URL = "http://localhost:5000/api/unidetails";
 
 class View extends Component {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   uniname: "",
-    //   registrationDate: "",
-    //   expiryDate: "",
-    //   imgUrl: "",
-    //   noOfStudent: "",
-    //   email: "",
-    //   webUrl: "",
-    //   contactNo: "",
-    // };
+
     this.state = {
       details: [],
     };
@@ -30,16 +20,6 @@ class View extends Component {
       this.setState({ details: result });
       console.log(this.state.details);
     });
-
-    // .catch((err) => {
-    //   if (err.response.status === undefined) {
-    //     window.alert("Please connect to internet!");
-    //   } else if (err.response.status === 300 || err.response.status === 500) {
-    //     window.alert(err.response.data.msg);
-    //   }
-
-    //   //window.location.reload();
-    // });
   }
 
   renderUniData = () => {

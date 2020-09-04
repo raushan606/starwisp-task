@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import Navbar from "./Navigation";
+import { postUniDetails } from "../services/unidetail-service";
 
 const Add = () => {
   const [formData, setFormData] = useState({
     uniname: "",
-    registrationDate: new Date(),
-    expiryDate: "",
+    registrationDate: new Date().toDateString(),
+    expiryDate: new Date().toDateString(),
     imgUrl: "",
     noOfStudent: "",
     email: "",
@@ -30,8 +31,8 @@ const Add = () => {
   };
 
   const onSubmit = async (e) => {
-    e.preventDefault();
     console.log(formData);
+    postUniDetails(formData);
   };
   return (
     <div>
@@ -61,7 +62,7 @@ const Add = () => {
               onChange={(e) => onChange(e)}
               id="uniname"
               placeholder="University Name"
-              required="true"
+              required={true}
             />
           </FormGroup>
           <FormGroup>
@@ -73,7 +74,7 @@ const Add = () => {
               value={registrationDate}
               onChange={(e) => onChange(e)}
               placeholder="Registration Date"
-              required="true"
+              required={true}
             />
           </FormGroup>
           <FormGroup>
@@ -85,7 +86,7 @@ const Add = () => {
               value={expiryDate}
               onChange={(e) => onChange(e)}
               placeholder="Expiry Date"
-              required="true"
+              required={true}
             />
           </FormGroup>
           <FormGroup>
@@ -97,7 +98,7 @@ const Add = () => {
               value={imgUrl}
               onChange={(e) => onChange(e)}
               placeholder="Image Url"
-              required="true"
+              required={true}
             />
           </FormGroup>
           <FormGroup>
@@ -109,7 +110,7 @@ const Add = () => {
               value={noOfStudent}
               onChange={(e) => onChange(e)}
               placeholder="Number of Students"
-              required="true"
+              required={true}
               pattern="\d+"
             />
           </FormGroup>
@@ -122,7 +123,7 @@ const Add = () => {
               value={email}
               onChange={(e) => onChange(e)}
               placeholder="Email"
-              required="true"
+              required={true}
             />
           </FormGroup>
           <FormGroup>
@@ -134,7 +135,7 @@ const Add = () => {
               value={webUrl}
               onChange={(e) => onChange(e)}
               placeholder="Website Url"
-              required="true"
+              required={true}
             />
           </FormGroup>
           <FormGroup>
@@ -148,7 +149,7 @@ const Add = () => {
               placeholder="Contact No."
               maxLength="10"
               minLength="10"
-              required="true"
+              required={true}
               pattern="\d+"
             />
           </FormGroup>
